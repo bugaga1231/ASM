@@ -31,38 +31,34 @@ inputMatrix:
 	push	cx
 	mov	cx,	n
 	mov	si,	0
-		inputMatrix_elem:
+	inputMatrix_elem:
 		inint a[bx][si]
 		add	si,	2
-		loop inputMatrix_elem
-	add	bx,	2
+	loop inputMatrix_elem
+	add	bx,	n
+	add	bx,	n
 	add	bx,	2
 	pop	cx
-	loop	inputMatrix
+loop	inputMatrix
 	
-	mov	dx,	n
-	add	dx,	n
 	mov	cx,	n
-	mov	bx,	0
-	mov	si,	0
+	sub	cx,	1
+	mov	bx,	2
 		
 sumAboveMain:
-	add	si,	2
 	push	cx
-		summation:
-		cmp	bx,	dx
-		jge	endSummation
+	mov	si,	0
+	summation:
 		cmp	a[bx][si],	0
 		jl	L
 		mov	ax,	a[bx][si]
 		add	sum_,	ax
-	L:	add	bx,	2
-		loop	summation
-	endSummation:
+	L:	add	si,	2
+	loop	summation
+	add	bx,	n
+	add	bx,	n
+	add	bx,	2
 	pop	cx
-	mov	bx,	dx
-	add	dx,	n
-	add	dx,	n
 loop	sumAboveMain
 
 
