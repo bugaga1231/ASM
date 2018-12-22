@@ -37,9 +37,25 @@ inputMatrix:
 	loop inputMatrix_elem
 	add	bx,	n
 	add	bx,	n
-	add	bx,	2
 	pop	cx
 loop	inputMatrix
+	
+	mov	cx,	n
+	mov	bx,	0
+
+outputMatrix:
+	push	cx
+	mov	cx,	n
+	mov	si,	0
+	output_elem:
+	outint	a[bx][si]
+	outch	20h
+	add	si,	2
+	loop	output_elem
+	add	bx,	n
+	add	bx,	n
+	pop	cx
+loop	outputMatrix
 	
 	mov	cx,	n
 	sub	cx,	1
@@ -49,9 +65,9 @@ sumAboveMain:
 	push	cx
 	mov	si,	0
 	summation:
-		cmp	a[bx][si],	0
-		jl	L
 		mov	ax,	a[bx][si]
+		cmp	ax,	0
+		jl	L
 		add	sum_,	ax
 	L:	add	si,	2
 	loop	summation
@@ -61,9 +77,29 @@ sumAboveMain:
 	pop	cx
 loop	sumAboveMain
 
+	mov	cx,	n
+	mov	bx,	0
+	
+create_B:
+	push cx
+	mov	cx,	n
+	mov	si,	0
+	mov	sum,	0
+	summation_2:
+		mov	ax,	a[bx][si]
+		cmp	ax,	sum_
+		jge	L1
+		add	sum,ax
+	L1:	add	si,	n
+		add	si,	n
+	loop	summation_2
+	mov	ax,	sum
+	mov	b[bx],	ax
+	add	bx,	2
+	pop	cx
+loop	create_B
 
 
-outint	sum_
 ;========== Заканчивайте писать Ваш код======================
 	pop	ax
 	pop	ds
