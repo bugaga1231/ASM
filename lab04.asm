@@ -52,6 +52,7 @@ outputMatrix:
 	outch	20h
 	add	si,	2
 	loop	output_elem
+	newline
 	add	bx,	n
 	add	bx,	n
 	pop	cx
@@ -80,6 +81,9 @@ loop	sumAboveMain
 	mov	cx,	n
 	mov	bx,	0
 	
+	outint sum_
+	newline
+	
 create_B:
 	push cx
 	mov	cx,	n
@@ -99,7 +103,14 @@ create_B:
 	pop	cx
 loop	create_B
 
-
+	mov	cx,	n
+	mov	bx, 0
+	
+outputMassive:
+	outint	b[bx]
+	outch	20h
+	add	bx,	2
+loop	outputMassive
 ;========== Заканчивайте писать Ваш код======================
 	pop	ax
 	pop	ds
