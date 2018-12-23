@@ -65,6 +65,7 @@ enter_book:
 loop enter_book
 	
 	mov	cx,	n
+	dec	cx
 	mov	bp,	0
 	mov	ax,	book[bp].price
 	mov	min_price,	ax
@@ -103,7 +104,7 @@ L1:	cmp	count_O,	2
 	int	21h
 	outch	20h
 L2:	pop	cx	
-	add	bp,	type	info
+	add	bx,	type	info
 loop	find_author
 ;========== Заканчивайте писать Ваш код======================
 	pop	ax
